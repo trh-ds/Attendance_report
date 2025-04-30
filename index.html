@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance Tracker</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <h2>Attendance</h2>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li class="nav-item active" data-section="report">
+                    <i class="nav-icon">📊</i>
+                    <span>Attendance Report</span>
+                </li>
+                <li class="nav-item" data-section="analysis">
+                    <i class="nav-icon">📈</i>
+                    <span>Analysis</span>
+                </li>
+                <li class="nav-item" data-section="timer">
+                    <i class="nav-icon">⏱️</i>
+                    <span>Study Timer</span>
+                </li>
+                <li class="nav-item" data-section="settings">
+                    <i class="nav-icon">⚙️</i>
+                    <span>Settings</span>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Attendance Report Section -->
+        <section id="report" class="content-section active">
+            <div class="section-header">
+                <h1>Attendance Report</h1>
+                <div class="actions">
+                    <button id="add-subject-btn" class="btn btn-primary">Add Subject</button>
+                    <button id="save-data-btn" class="btn btn-success">Save Data</button>
+                    <button id="export-excel-btn" class="btn btn-accent">Export to Excel</button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Daily Attendance</h3>
+                    <div class="date-display">
+                        <span id="current-date"></span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="attendance-table" class="table">
+                            <thead>
+                                <tr id="table-header">
+                                    <th>Date</th>
+                                    <!-- Subject headers will be added dynamically -->
+                                </tr>
+                            </thead>
+                            <tbody id="attendance-data">
+                                <!-- Attendance data will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analysis Section -->
+        <section id="analysis" class="content-section">
+            <div class="section-header">
+                <h1>Attendance Analysis</h1>
+            </div>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Overall Attendance</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="overall-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Subject-wise Attendance</h3>
+                        <select id="subject-select" class="form-control">
+                            <!-- Subject options will be added dynamically -->
+                        </select>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="subject-chart"></canvas>
+                        </div>
+                        <div class="attendance-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Present:</span>
+                                <span id="present-count" class="stat-value">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Absent:</span>
+                                <span id="absent-count" class="stat-value">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Attendance %:</span>
+                                <span id="attendance-percentage" class="stat-value">0%</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Classes to attend:</span>
+                                <span id="classes-to-attend" class="stat-value">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Study Timer Section -->
+        <section id="timer" class="content-section">
+            <div class="section-header">
+                <h1>Study Timer</h1>
+            </div>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Focus Timer</h3>
+                    </div>
+                    <div class="card-body timer-container">
+                        <div class="timer-display">
+                            <span id="minutes">25</span>:<span id="seconds">00</span>
+                        </div>
+                        <div class="timer-controls">
+                            <button id="start-timer" class="btn btn-primary">Start</button>
+                            <button id="pause-timer" class="btn btn-accent" disabled>Pause</button>
+                            <button id="reset-timer" class="btn btn-danger">Reset</button>
+                        </div>
+                        <div class="timer-presets">
+                            <button class="preset-btn" data-time="15">15 min</button>
+                            <button class="preset-btn" data-time="25">25 min</button>
+                            <button class="preset-btn" data-time="45">45 min</button>
+                            <button class="preset-btn" data-time="60">60 min</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Relaxation Visual</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="visual-container"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="content-section">
+            <div class="section-header">
+                <h1>Settings</h1>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Manage Subjects</h3>
+                </div>
+                <div class="card-body">
+                    <div id="subjects-list">
+                        <!-- Subject list will be populated here -->
+                    </div>
+                    <div class="subject-form">
+                        <input type="text" id="new-subject-input" class="form-control" placeholder="New subject name">
+                        <button id="add-subject-settings" class="btn btn-primary">Add Subject</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3>Data Management</h3>
+                </div>
+                <div class="card-body">
+                    <button id="clear-data" class="btn btn-danger">Clear All Data</button>
+                    <button id="download-backup" class="btn btn-accent">Download Backup</button>
+                    <div class="file-upload">
+                        <label for="restore-file" class="btn btn-primary">Restore from Backup</label>
+                        <input type="file" id="restore-file" accept=".json">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modals -->
+    <div id="add-subject-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Subject</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="subject-name">Subject Name:</label>
+                    <input type="text" id="subject-name" class="form-control" placeholder="Enter subject name">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-subject" class="btn btn-secondary">Cancel</button>
+                <button id="save-subject" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
