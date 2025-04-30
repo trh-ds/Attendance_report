@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,12 @@
     <!-- Link to external CSS file -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <button id="toggle-sidebar" class="btn btn-secondary" style="position: fixed; top: 20px; left: 20px; z-index: 200;">
+        ☰
+    </button>
+
     <!-- Sidebar Navigation -->
     <div class="sidebar">
         <div class="logo">
@@ -47,7 +53,7 @@
                     <button id="export-excel-btn" class="btn btn-accent">Export to Excel</button>
                 </div>
             </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <h3>Daily Attendance</h3>
@@ -78,7 +84,7 @@
             <div class="section-header">
                 <h1>Attendance Analysis</h1>
             </div>
-            
+
             <div class="card-grid">
                 <div class="card">
                     <div class="card-header">
@@ -90,7 +96,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="card">
                     <div class="card-header">
                         <h3>Subject-wise Attendance</h3>
@@ -130,7 +136,7 @@
             <div class="section-header">
                 <h1>Study Timer</h1>
             </div>
-            
+
             <div class="card-grid">
                 <div class="card">
                     <div class="card-header">
@@ -153,7 +159,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="card">
                     <div class="card-header">
                         <h3>Relaxation Visual</h3>
@@ -170,7 +176,7 @@
             <div class="section-header">
                 <h1>Settings</h1>
             </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <h3>Manage Subjects</h3>
@@ -185,7 +191,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <h3>Data Management</h3>
@@ -229,4 +235,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
